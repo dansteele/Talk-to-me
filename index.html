@@ -17,18 +17,25 @@
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script> 
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script> 
     <script>
+      $('#newuser').hide();
       var socket = io();
       $('form').submit(function(){
-      socket.emit('chat message', $('#m').val());
+        socket.emit('chat message', $('#m').val());
       $('#m').val('');
       return false;
       });
       socket.on('chat message', function(msg){
-      $('#messages').append($('<li>').text(msg));
+        $('#messages').append($('<li>').text(msg));
       });
-      socket.on('new connection') {
-      $('#newuser').show()
-      }
+      socket.on('new user', function() {
+        $('#newuser').show(400);
+        setTimeout(
+        function() 
+        {
+          $('#newuser').hide(400);
+        }, 5000);
+
+      });
     </script>
   </body>
 </html>
