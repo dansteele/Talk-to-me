@@ -6,6 +6,10 @@ app.get('/', function(req, res){
   res.sendfile('index.html');
 });
 
+app.get('/stylesheet.css', function(req, res){
+  res.sendfile('stylesheet.css');
+});
+
 
 io.on('connection', function(socket){
   io.emit('new user')
